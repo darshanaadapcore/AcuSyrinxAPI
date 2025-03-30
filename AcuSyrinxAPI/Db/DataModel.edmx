@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TH_PURCHASE_INV_LINES">
+          <Key>
+            <PropertyRef Name="PIL_INVOICE_ID" />
+            <PropertyRef Name="PIL_SEQ" />
+          </Key>
+          <Property Name="PIL_INVOICE_ID" Type="int" Nullable="false" />
+          <Property Name="PIL_SEQ" Type="int" Nullable="false" />
+          <Property Name="PIL_NOMINAL_CODE" Type="varchar" MaxLength="20" />
+          <Property Name="PIL_DESCRIPTION" Type="varchar" MaxLength="512" />
+          <Property Name="PIL_NET_AMOUNT" Type="money" />
+          <Property Name="PIL_TAX_CODE" Type="varchar" MaxLength="5" />
+          <Property Name="PIL_TAX_AMOUNT" Type="money" />
+          <Property Name="PIL_EVENT_ID" Type="int" />
+          <Property Name="PIL_ACCOUNTS_DEPT" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TH_PURCHASE_INVOICES">
+          <Key>
+            <PropertyRef Name="PIV_ID" />
+          </Key>
+          <Property Name="PIV_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PIV_INV_DATE" Type="datetime" />
+          <Property Name="PIV_INV_NUMBER" Type="varchar" MaxLength="30" />
+          <Property Name="PIV_STATUS" Type="varchar" MaxLength="1" />
+          <Property Name="PIV_INV_TYPE" Type="varchar" MaxLength="1" />
+          <Property Name="PIV_SUPPLIER_ID" Type="int" />
+          <Property Name="PIV_POSTED_FLAG" Type="bit" Nullable="false" />
+          <Property Name="PIV_NONBATCH_POSTING_ID" Type="int" />
+          <Property Name="PIV_INTERNAL_NOTES" Type="varchar" MaxLength="512" />
+          <Property Name="PIV_DEPOT_ID" Type="int" />
+          <Property Name="PIV_USERID_CREATED" Type="int" />
+          <Property Name="PIV_POST_TO_ACCOUNT" Type="varchar" MaxLength="20" />
+          <Property Name="PIV_ORDER_ID" Type="int" />
+          <Property Name="PIV_DATE_CREATED" Type="datetime" />
+          <Property Name="PIV_USERID_CANCELLED" Type="int" />
+          <Property Name="PIV_DATE_CANCELLED" Type="datetime" />
+          <Property Name="PIV_PY_DATE" Type="datetime" />
+          <Property Name="PIV_PY_ACCOUNT" Type="varchar" MaxLength="20" />
+          <Property Name="PIV_PY_REF" Type="varchar" MaxLength="20" />
+          <Property Name="PIV_PY_AMOUNT" Type="money" />
+          <Property Name="PIV_POSTING_DATE" Type="datetime" />
+          <Property Name="PIV_USER_NUMBER" Type="varchar" MaxLength="20" />
+          <Property Name="PIV_DISPUTE_REASON_ID" Type="int" />
+          <Property Name="PIV_CURRENCY_ID" Type="int" />
+          <Property Name="PIV_EXCH_RATE" Type="real" />
+          <Property Name="PIV_EVENT_ID" Type="int" />
+          <Property Name="PIV_ACCOUNTS_CODE" Type="varchar" MaxLength="30" />
+          <Property Name="PIV_IS_TO_BE_CONFIRMED" Type="bit" />
+          <Property Name="PIV_FROM_DATE" Type="datetime" />
+          <Property Name="PIV_TO_DATE" Type="datetime" />
+          <Property Name="PIV_ASSIGN_TO_USER_ID" Type="int" />
+          <Property Name="PIV_IS_AUTHORISED" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PIL_PIV">
+          <End Role="TH_PURCHASE_INVOICES" Type="Self.TH_PURCHASE_INVOICES" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TH_PURCHASE_INV_LINES" Type="Self.TH_PURCHASE_INV_LINES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TH_PURCHASE_INVOICES">
+              <PropertyRef Name="PIV_ID" />
+            </Principal>
+            <Dependent Role="TH_PURCHASE_INV_LINES">
+              <PropertyRef Name="PIL_INVOICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataModelStoreContainer">
+          <EntitySet Name="TH_PURCHASE_INV_LINES" EntityType="Self.TH_PURCHASE_INV_LINES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TH_PURCHASE_INVOICES" EntityType="Self.TH_PURCHASE_INVOICES" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PIL_PIV" Association="Self.FK_PIL_PIV">
+            <End Role="TH_PURCHASE_INVOICES" EntitySet="TH_PURCHASE_INVOICES" />
+            <End Role="TH_PURCHASE_INV_LINES" EntitySet="TH_PURCHASE_INV_LINES" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TH_PURCHASE_INVOICES">
+          <Key>
+            <PropertyRef Name="PIV_ID" />
+          </Key>
+          <Property Name="PIV_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PIV_INV_DATE" Type="DateTime" Precision="3" />
+          <Property Name="PIV_INV_NUMBER" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PIV_STATUS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PIV_INV_TYPE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PIV_SUPPLIER_ID" Type="Int32" />
+          <Property Name="PIV_POSTED_FLAG" Type="Boolean" Nullable="false" />
+          <Property Name="PIV_NONBATCH_POSTING_ID" Type="Int32" />
+          <Property Name="PIV_INTERNAL_NOTES" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="PIV_DEPOT_ID" Type="Int32" />
+          <Property Name="PIV_USERID_CREATED" Type="Int32" />
+          <Property Name="PIV_POST_TO_ACCOUNT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PIV_ORDER_ID" Type="Int32" />
+          <Property Name="PIV_DATE_CREATED" Type="DateTime" Precision="3" />
+          <Property Name="PIV_USERID_CANCELLED" Type="Int32" />
+          <Property Name="PIV_DATE_CANCELLED" Type="DateTime" Precision="3" />
+          <Property Name="PIV_PY_DATE" Type="DateTime" Precision="3" />
+          <Property Name="PIV_PY_ACCOUNT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PIV_PY_REF" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PIV_PY_AMOUNT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PIV_POSTING_DATE" Type="DateTime" Precision="3" />
+          <Property Name="PIV_USER_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PIV_DISPUTE_REASON_ID" Type="Int32" />
+          <Property Name="PIV_CURRENCY_ID" Type="Int32" />
+          <Property Name="PIV_EXCH_RATE" Type="Single" />
+          <Property Name="PIV_EVENT_ID" Type="Int32" />
+          <Property Name="PIV_ACCOUNTS_CODE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PIV_IS_TO_BE_CONFIRMED" Type="Boolean" />
+          <Property Name="PIV_FROM_DATE" Type="DateTime" Precision="3" />
+          <Property Name="PIV_TO_DATE" Type="DateTime" Precision="3" />
+          <Property Name="PIV_ASSIGN_TO_USER_ID" Type="Int32" />
+          <Property Name="PIV_IS_AUTHORISED" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TH_PURCHASE_INV_LINES" Relationship="DataModel.FK_PIL_PIV" FromRole="TH_PURCHASE_INVOICES" ToRole="TH_PURCHASE_INV_LINES" />
+        </EntityType>
+        <EntityContainer Name="DataContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TH_PURCHASE_INVOICES" EntityType="Self.TH_PURCHASE_INVOICES" />
+          <EntitySet Name="TH_PURCHASE_INV_LINES" EntityType="DataModel.TH_PURCHASE_INV_LINES" />
+          <AssociationSet Name="FK_PIL_PIV" Association="DataModel.FK_PIL_PIV">
+            <End Role="TH_PURCHASE_INVOICES" EntitySet="TH_PURCHASE_INVOICES" />
+            <End Role="TH_PURCHASE_INV_LINES" EntitySet="TH_PURCHASE_INV_LINES" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TH_PURCHASE_INV_LINES">
+          <Key>
+            <PropertyRef Name="PIL_INVOICE_ID" />
+            <PropertyRef Name="PIL_SEQ" />
+          </Key>
+          <Property Name="PIL_INVOICE_ID" Type="Int32" Nullable="false" />
+          <Property Name="PIL_SEQ" Type="Int32" Nullable="false" />
+          <Property Name="PIL_NOMINAL_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PIL_DESCRIPTION" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="PIL_NET_AMOUNT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PIL_TAX_CODE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PIL_TAX_AMOUNT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PIL_EVENT_ID" Type="Int32" />
+          <Property Name="PIL_ACCOUNTS_DEPT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TH_PURCHASE_INVOICES" Relationship="DataModel.FK_PIL_PIV" FromRole="TH_PURCHASE_INV_LINES" ToRole="TH_PURCHASE_INVOICES" />
+        </EntityType>
+        <Association Name="FK_PIL_PIV">
+          <End Type="DataModel.TH_PURCHASE_INVOICES" Role="TH_PURCHASE_INVOICES" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DataModel.TH_PURCHASE_INV_LINES" Role="TH_PURCHASE_INV_LINES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TH_PURCHASE_INVOICES">
+              <PropertyRef Name="PIV_ID" />
+            </Principal>
+            <Dependent Role="TH_PURCHASE_INV_LINES">
+              <PropertyRef Name="PIL_INVOICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DataModelStoreContainer" CdmEntityContainer="DataContext">
+          <EntitySetMapping Name="TH_PURCHASE_INVOICES">
+            <EntityTypeMapping TypeName="DataModel.TH_PURCHASE_INVOICES">
+              <MappingFragment StoreEntitySet="TH_PURCHASE_INVOICES">
+                <ScalarProperty Name="PIV_ID" ColumnName="PIV_ID" />
+                <ScalarProperty Name="PIV_INV_DATE" ColumnName="PIV_INV_DATE" />
+                <ScalarProperty Name="PIV_INV_NUMBER" ColumnName="PIV_INV_NUMBER" />
+                <ScalarProperty Name="PIV_STATUS" ColumnName="PIV_STATUS" />
+                <ScalarProperty Name="PIV_INV_TYPE" ColumnName="PIV_INV_TYPE" />
+                <ScalarProperty Name="PIV_SUPPLIER_ID" ColumnName="PIV_SUPPLIER_ID" />
+                <ScalarProperty Name="PIV_POSTED_FLAG" ColumnName="PIV_POSTED_FLAG" />
+                <ScalarProperty Name="PIV_NONBATCH_POSTING_ID" ColumnName="PIV_NONBATCH_POSTING_ID" />
+                <ScalarProperty Name="PIV_INTERNAL_NOTES" ColumnName="PIV_INTERNAL_NOTES" />
+                <ScalarProperty Name="PIV_DEPOT_ID" ColumnName="PIV_DEPOT_ID" />
+                <ScalarProperty Name="PIV_USERID_CREATED" ColumnName="PIV_USERID_CREATED" />
+                <ScalarProperty Name="PIV_POST_TO_ACCOUNT" ColumnName="PIV_POST_TO_ACCOUNT" />
+                <ScalarProperty Name="PIV_ORDER_ID" ColumnName="PIV_ORDER_ID" />
+                <ScalarProperty Name="PIV_DATE_CREATED" ColumnName="PIV_DATE_CREATED" />
+                <ScalarProperty Name="PIV_USERID_CANCELLED" ColumnName="PIV_USERID_CANCELLED" />
+                <ScalarProperty Name="PIV_DATE_CANCELLED" ColumnName="PIV_DATE_CANCELLED" />
+                <ScalarProperty Name="PIV_PY_DATE" ColumnName="PIV_PY_DATE" />
+                <ScalarProperty Name="PIV_PY_ACCOUNT" ColumnName="PIV_PY_ACCOUNT" />
+                <ScalarProperty Name="PIV_PY_REF" ColumnName="PIV_PY_REF" />
+                <ScalarProperty Name="PIV_PY_AMOUNT" ColumnName="PIV_PY_AMOUNT" />
+                <ScalarProperty Name="PIV_POSTING_DATE" ColumnName="PIV_POSTING_DATE" />
+                <ScalarProperty Name="PIV_USER_NUMBER" ColumnName="PIV_USER_NUMBER" />
+                <ScalarProperty Name="PIV_DISPUTE_REASON_ID" ColumnName="PIV_DISPUTE_REASON_ID" />
+                <ScalarProperty Name="PIV_CURRENCY_ID" ColumnName="PIV_CURRENCY_ID" />
+                <ScalarProperty Name="PIV_EXCH_RATE" ColumnName="PIV_EXCH_RATE" />
+                <ScalarProperty Name="PIV_EVENT_ID" ColumnName="PIV_EVENT_ID" />
+                <ScalarProperty Name="PIV_ACCOUNTS_CODE" ColumnName="PIV_ACCOUNTS_CODE" />
+                <ScalarProperty Name="PIV_IS_TO_BE_CONFIRMED" ColumnName="PIV_IS_TO_BE_CONFIRMED" />
+                <ScalarProperty Name="PIV_FROM_DATE" ColumnName="PIV_FROM_DATE" />
+                <ScalarProperty Name="PIV_TO_DATE" ColumnName="PIV_TO_DATE" />
+                <ScalarProperty Name="PIV_ASSIGN_TO_USER_ID" ColumnName="PIV_ASSIGN_TO_USER_ID" />
+                <ScalarProperty Name="PIV_IS_AUTHORISED" ColumnName="PIV_IS_AUTHORISED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TH_PURCHASE_INV_LINES">
+            <EntityTypeMapping TypeName="DataModel.TH_PURCHASE_INV_LINES">
+              <MappingFragment StoreEntitySet="TH_PURCHASE_INV_LINES">
+                <ScalarProperty Name="PIL_ACCOUNTS_DEPT" ColumnName="PIL_ACCOUNTS_DEPT" />
+                <ScalarProperty Name="PIL_EVENT_ID" ColumnName="PIL_EVENT_ID" />
+                <ScalarProperty Name="PIL_TAX_AMOUNT" ColumnName="PIL_TAX_AMOUNT" />
+                <ScalarProperty Name="PIL_TAX_CODE" ColumnName="PIL_TAX_CODE" />
+                <ScalarProperty Name="PIL_NET_AMOUNT" ColumnName="PIL_NET_AMOUNT" />
+                <ScalarProperty Name="PIL_DESCRIPTION" ColumnName="PIL_DESCRIPTION" />
+                <ScalarProperty Name="PIL_NOMINAL_CODE" ColumnName="PIL_NOMINAL_CODE" />
+                <ScalarProperty Name="PIL_SEQ" ColumnName="PIL_SEQ" />
+                <ScalarProperty Name="PIL_INVOICE_ID" ColumnName="PIL_INVOICE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
