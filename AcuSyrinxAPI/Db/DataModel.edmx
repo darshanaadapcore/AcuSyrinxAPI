@@ -5,6 +5,103 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TH_HIRE_INV_LINES">
+          <Key>
+            <PropertyRef Name="IVL_INVOICE_NUMBER" />
+            <PropertyRef Name="IVL_SEQ" />
+          </Key>
+          <Property Name="IVL_INVOICE_NUMBER" Type="int" Nullable="false" />
+          <Property Name="IVL_SEQ" Type="int" Nullable="false" />
+          <Property Name="IVL_DETAILS" Type="varchar" MaxLength="2048" />
+          <Property Name="IVL_NOMINAL_LEDGER_CODE" Type="varchar" MaxLength="40" />
+          <Property Name="IVL_TAX_CODE" Type="varchar" MaxLength="5" />
+          <Property Name="IVL_LINE_SITE_ID" Type="int" />
+          <Property Name="IVL_ADVNOTE_HIRE_CONTRACT_ID" Type="int" />
+          <Property Name="IVL_CONTRACT_NUMBER" Type="int" />
+          <Property Name="IVL_DATE_FROM" Type="datetime" />
+          <Property Name="IVL_DATE_TO" Type="datetime" />
+          <Property Name="IVL_CUSTOMER_REFERENCE" Type="varchar" MaxLength="50" />
+          <Property Name="IVL_CHARGE" Type="money" />
+          <Property Name="IVL_LINE_TAX_RATE" Type="real" />
+          <Property Name="IVL_TAX_AMOUNT" Type="money" />
+          <Property Name="IVL_GENERATED_CHARGE" Type="money" />
+          <Property Name="IVL_EXCLUDE" Type="bit" Nullable="false" />
+          <Property Name="IVL_DISCOUNT_PCT" Type="real" />
+          <Property Name="IVL_PRE_DISCOUNT_CHARGE" Type="money" />
+          <Property Name="IVL_SECTION_NO" Type="int" />
+          <Property Name="IVL_QUANTITY" Type="varchar" MaxLength="12" />
+          <Property Name="IVL_UNIT_PRICE" Type="money" />
+          <Property Name="IVL_NOTES" Type="varchar" MaxLength="2048" />
+          <Property Name="upsize_ts" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="IVL_NOTES2" Type="varchar" MaxLength="1024" />
+          <Property Name="IVL_SOURCEDOC_ID" Type="int" />
+          <Property Name="IVL_SOURCEDOC_LINE_SEQ" Type="int" />
+          <Property Name="IVL_LOCAL_TAX_CODE" Type="varchar" MaxLength="5" />
+          <Property Name="IVL_LOCAL_TAX_RATE" Type="real" />
+          <Property Name="IVL_LOCAL_TAX_AMOUNT" Type="money" />
+          <Property Name="IVL_STOCK_NO" Type="varchar" MaxLength="40" />
+          <Property Name="IVL_PRICE_PER" Type="varchar" MaxLength="20" />
+          <Property Name="IVL_HIRE_DURATION_PERIODS" Type="int" />
+          <Property Name="IVL_HIRE_DURATION_ADD_DAYS" Type="real" />
+          <Property Name="IVL_1DAY_RATE" Type="money" />
+          <Property Name="IVL_HIRE_STATUS" Type="int" />
+          <Property Name="IVL_HIRE_OFFHIRE_DATE" Type="datetime" />
+          <Property Name="IVL_USER_MODIFIED" Type="bit" Nullable="false" />
+          <Property Name="IVL_CURR_EQUIPMENT_CODE" Type="varchar" MaxLength="12" />
+          <Property Name="IVL_CURR_STOCKNO" Type="varchar" MaxLength="20" />
+          <Property Name="IVL_IS_FIRST_HIRE_INV" Type="bit" />
+        </EntityType>
+        <EntityType Name="TH_HIRE_INVOICES">
+          <Key>
+            <PropertyRef Name="IVC_INVOICE_NUMBER" />
+          </Key>
+          <Property Name="IVC_INVOICE_NUMBER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IVC_CUSTOMER_NUMBER" Type="int" Nullable="false" />
+          <Property Name="IVC_SITE_ID" Type="int" />
+          <Property Name="IVC_DEPOT_ID" Type="int" />
+          <Property Name="IVC_INV_ADR_ID" Type="int" />
+          <Property Name="IVC_BATCH_NUMBER" Type="int" />
+          <Property Name="IVC_NONBATCH_POSTING_ID" Type="int" />
+          <Property Name="IVC_USER_INVOICE_NUMBER" Type="varchar" MaxLength="20" />
+          <Property Name="IVC_INVOICE_TYPE" Type="varchar" MaxLength="20" />
+          <Property Name="IVC_INVOICE_SOURCE" Type="varchar" MaxLength="1" />
+          <Property Name="IVC_HAS_LINES" Type="bit" Nullable="false" />
+          <Property Name="IVC_INVOICE_WHEN" Type="int" />
+          <Property Name="IVC_IS_INTERNAL" Type="bit" Nullable="false" />
+          <Property Name="IVC_INVOICE_DATE" Type="datetime" />
+          <Property Name="IVC_BOTTOM_TITLE" Type="varchar" MaxLength="2000" />
+          <Property Name="IVC_CASH_STATUS" Type="varchar" MaxLength="1" />
+          <Property Name="IVC_CASH_PAID_FLAG" Type="bit" />
+          <Property Name="IVC_CASH_REQUIRES_POSTING_FLAG" Type="bit" Nullable="false" />
+          <Property Name="IVC_TOTAL_AMOUNT" Type="money" />
+          <Property Name="IVC_INVOICE_FOOTER_ID" Type="int" />
+          <Property Name="IVC_INVOICE_DUE_DATE" Type="datetime" />
+          <Property Name="upsize_ts" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="IVC_MARK_PAID_USERID" Type="int" />
+          <Property Name="IVC_MARK_PAID_USERNAME" Type="varchar" MaxLength="30" />
+          <Property Name="IVC_MARK_PAID_DATE" Type="datetime" />
+          <Property Name="IVC_POST_TO_ACCOUNT" Type="varchar" MaxLength="20" />
+          <Property Name="IVC_FACTOR_POSTED" Type="bit" Nullable="false" />
+          <Property Name="IVC_CUSTOMER_NAME" Type="varchar" MaxLength="60" />
+          <Property Name="IVC_POSTED" Type="bit" Nullable="false" />
+          <Property Name="IVC_UNPAID_TX_ID" Type="int" />
+          <Property Name="IVC_SALESPERSON_ID" Type="int" />
+          <Property Name="IVC_BATCH_CASH_CONTRACT_ID" Type="int" />
+          <Property Name="IVC_CURRENCY_ID" Type="int" />
+          <Property Name="IVC_EXCH_RATE" Type="real" />
+          <Property Name="IVC_CONFIRMED_DATE" Type="datetime" />
+          <Property Name="IVC_CONFIRMED_USERID" Type="int" />
+          <Property Name="IVC_INV_DELIVERY_REQUIRES_EXPORT" Type="bit" />
+          <Property Name="IVC_INV_DELIVERY_EXPORT_ID" Type="int" />
+          <Property Name="IVC_EVENT_ID" Type="int" />
+          <Property Name="IVC_RAISED_DATE" Type="datetime" />
+          <Property Name="IVC_UNPAID_STATUS_NOTES" Type="varchar" MaxLength="2000" />
+          <Property Name="IVC_SELECTED" Type="bit" Nullable="false" />
+          <Property Name="IVC_CUSTOMER_TAX_REF_NO" Type="varchar" MaxLength="20" />
+          <Property Name="IVC_SELECT_FOR_RUNSET" Type="bit" Nullable="false" />
+          <Property Name="IVC_SP_EXPORTED" Type="bit" Nullable="false" />
+          <Property Name="IVC_EMAIL_SENT_FLAG" Type="bit" />
+        </EntityType>
         <EntityType Name="TH_PURCHASE_INV_LINES">
           <Key>
             <PropertyRef Name="PIL_INVOICE_ID" />
@@ -57,6 +154,20 @@
           <Property Name="PIV_ASSIGN_TO_USER_ID" Type="int" />
           <Property Name="PIV_IS_AUTHORISED" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_IVL_IVC">
+          <End Role="TH_HIRE_INVOICES" Type="Self.TH_HIRE_INVOICES" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TH_HIRE_INV_LINES" Type="Self.TH_HIRE_INV_LINES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TH_HIRE_INVOICES">
+              <PropertyRef Name="IVC_INVOICE_NUMBER" />
+            </Principal>
+            <Dependent Role="TH_HIRE_INV_LINES">
+              <PropertyRef Name="IVL_INVOICE_NUMBER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PIL_PIV">
           <End Role="TH_PURCHASE_INVOICES" Type="Self.TH_PURCHASE_INVOICES" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -72,8 +183,14 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DataModelStoreContainer">
+          <EntitySet Name="TH_HIRE_INV_LINES" EntityType="Self.TH_HIRE_INV_LINES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TH_HIRE_INVOICES" EntityType="Self.TH_HIRE_INVOICES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TH_PURCHASE_INV_LINES" EntityType="Self.TH_PURCHASE_INV_LINES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TH_PURCHASE_INVOICES" EntityType="Self.TH_PURCHASE_INVOICES" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_IVL_IVC" Association="Self.FK_IVL_IVC">
+            <End Role="TH_HIRE_INVOICES" EntitySet="TH_HIRE_INVOICES" />
+            <End Role="TH_HIRE_INV_LINES" EntitySet="TH_HIRE_INV_LINES" />
+          </AssociationSet>
           <AssociationSet Name="FK_PIL_PIV" Association="Self.FK_PIL_PIV">
             <End Role="TH_PURCHASE_INVOICES" EntitySet="TH_PURCHASE_INVOICES" />
             <End Role="TH_PURCHASE_INV_LINES" EntitySet="TH_PURCHASE_INV_LINES" />
@@ -128,6 +245,12 @@
             <End Role="TH_PURCHASE_INVOICES" EntitySet="TH_PURCHASE_INVOICES" />
             <End Role="TH_PURCHASE_INV_LINES" EntitySet="TH_PURCHASE_INV_LINES" />
           </AssociationSet>
+          <EntitySet Name="TH_HIRE_INV_LINES" EntityType="DataModel.TH_HIRE_INV_LINES" />
+          <EntitySet Name="TH_HIRE_INVOICES" EntityType="DataModel.TH_HIRE_INVOICES" />
+          <AssociationSet Name="FK_IVL_IVC" Association="DataModel.FK_IVL_IVC">
+            <End Role="TH_HIRE_INVOICES" EntitySet="TH_HIRE_INVOICES" />
+            <End Role="TH_HIRE_INV_LINES" EntitySet="TH_HIRE_INV_LINES" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="TH_PURCHASE_INV_LINES">
           <Key>
@@ -156,6 +279,119 @@
             </Principal>
             <Dependent Role="TH_PURCHASE_INV_LINES">
               <PropertyRef Name="PIL_INVOICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TH_HIRE_INV_LINES">
+          <Key>
+            <PropertyRef Name="IVL_INVOICE_NUMBER" />
+            <PropertyRef Name="IVL_SEQ" />
+          </Key>
+          <Property Name="IVL_INVOICE_NUMBER" Type="Int32" Nullable="false" />
+          <Property Name="IVL_SEQ" Type="Int32" Nullable="false" />
+          <Property Name="IVL_DETAILS" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
+          <Property Name="IVL_NOMINAL_LEDGER_CODE" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="IVL_TAX_CODE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="IVL_LINE_SITE_ID" Type="Int32" />
+          <Property Name="IVL_ADVNOTE_HIRE_CONTRACT_ID" Type="Int32" />
+          <Property Name="IVL_CONTRACT_NUMBER" Type="Int32" />
+          <Property Name="IVL_DATE_FROM" Type="DateTime" Precision="3" />
+          <Property Name="IVL_DATE_TO" Type="DateTime" Precision="3" />
+          <Property Name="IVL_CUSTOMER_REFERENCE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IVL_CHARGE" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IVL_LINE_TAX_RATE" Type="Single" />
+          <Property Name="IVL_TAX_AMOUNT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IVL_GENERATED_CHARGE" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IVL_EXCLUDE" Type="Boolean" Nullable="false" />
+          <Property Name="IVL_DISCOUNT_PCT" Type="Single" />
+          <Property Name="IVL_PRE_DISCOUNT_CHARGE" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IVL_SECTION_NO" Type="Int32" />
+          <Property Name="IVL_QUANTITY" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="IVL_UNIT_PRICE" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IVL_NOTES" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
+          <Property Name="upsize_ts" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IVL_NOTES2" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="IVL_SOURCEDOC_ID" Type="Int32" />
+          <Property Name="IVL_SOURCEDOC_LINE_SEQ" Type="Int32" />
+          <Property Name="IVL_LOCAL_TAX_CODE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="IVL_LOCAL_TAX_RATE" Type="Single" />
+          <Property Name="IVL_LOCAL_TAX_AMOUNT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IVL_STOCK_NO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="IVL_PRICE_PER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IVL_HIRE_DURATION_PERIODS" Type="Int32" />
+          <Property Name="IVL_HIRE_DURATION_ADD_DAYS" Type="Single" />
+          <Property Name="IVL_1DAY_RATE" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IVL_HIRE_STATUS" Type="Int32" />
+          <Property Name="IVL_HIRE_OFFHIRE_DATE" Type="DateTime" Precision="3" />
+          <Property Name="IVL_USER_MODIFIED" Type="Boolean" Nullable="false" />
+          <Property Name="IVL_CURR_EQUIPMENT_CODE" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="IVL_CURR_STOCKNO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IVL_IS_FIRST_HIRE_INV" Type="Boolean" />
+          <NavigationProperty Name="TH_HIRE_INVOICES" Relationship="DataModel.FK_IVL_IVC" FromRole="TH_HIRE_INV_LINES" ToRole="TH_HIRE_INVOICES" />
+        </EntityType>
+        <EntityType Name="TH_HIRE_INVOICES">
+          <Key>
+            <PropertyRef Name="IVC_INVOICE_NUMBER" />
+          </Key>
+          <Property Name="IVC_INVOICE_NUMBER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IVC_CUSTOMER_NUMBER" Type="Int32" Nullable="false" />
+          <Property Name="IVC_SITE_ID" Type="Int32" />
+          <Property Name="IVC_DEPOT_ID" Type="Int32" />
+          <Property Name="IVC_INV_ADR_ID" Type="Int32" />
+          <Property Name="IVC_BATCH_NUMBER" Type="Int32" />
+          <Property Name="IVC_NONBATCH_POSTING_ID" Type="Int32" />
+          <Property Name="IVC_USER_INVOICE_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IVC_INVOICE_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IVC_INVOICE_SOURCE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="IVC_HAS_LINES" Type="Boolean" Nullable="false" />
+          <Property Name="IVC_INVOICE_WHEN" Type="Int32" />
+          <Property Name="IVC_IS_INTERNAL" Type="Boolean" Nullable="false" />
+          <Property Name="IVC_INVOICE_DATE" Type="DateTime" Precision="3" />
+          <Property Name="IVC_BOTTOM_TITLE" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="IVC_CASH_STATUS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="IVC_CASH_PAID_FLAG" Type="Boolean" />
+          <Property Name="IVC_CASH_REQUIRES_POSTING_FLAG" Type="Boolean" Nullable="false" />
+          <Property Name="IVC_TOTAL_AMOUNT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IVC_INVOICE_FOOTER_ID" Type="Int32" />
+          <Property Name="IVC_INVOICE_DUE_DATE" Type="DateTime" Precision="3" />
+          <Property Name="upsize_ts" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IVC_MARK_PAID_USERID" Type="Int32" />
+          <Property Name="IVC_MARK_PAID_USERNAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IVC_MARK_PAID_DATE" Type="DateTime" Precision="3" />
+          <Property Name="IVC_POST_TO_ACCOUNT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IVC_FACTOR_POSTED" Type="Boolean" Nullable="false" />
+          <Property Name="IVC_CUSTOMER_NAME" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="IVC_POSTED" Type="Boolean" Nullable="false" />
+          <Property Name="IVC_UNPAID_TX_ID" Type="Int32" />
+          <Property Name="IVC_SALESPERSON_ID" Type="Int32" />
+          <Property Name="IVC_BATCH_CASH_CONTRACT_ID" Type="Int32" />
+          <Property Name="IVC_CURRENCY_ID" Type="Int32" />
+          <Property Name="IVC_EXCH_RATE" Type="Single" />
+          <Property Name="IVC_CONFIRMED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="IVC_CONFIRMED_USERID" Type="Int32" />
+          <Property Name="IVC_INV_DELIVERY_REQUIRES_EXPORT" Type="Boolean" />
+          <Property Name="IVC_INV_DELIVERY_EXPORT_ID" Type="Int32" />
+          <Property Name="IVC_EVENT_ID" Type="Int32" />
+          <Property Name="IVC_RAISED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="IVC_UNPAID_STATUS_NOTES" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="IVC_SELECTED" Type="Boolean" Nullable="false" />
+          <Property Name="IVC_CUSTOMER_TAX_REF_NO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IVC_SELECT_FOR_RUNSET" Type="Boolean" Nullable="false" />
+          <Property Name="IVC_SP_EXPORTED" Type="Boolean" Nullable="false" />
+          <Property Name="IVC_EMAIL_SENT_FLAG" Type="Boolean" />
+          <NavigationProperty Name="TH_HIRE_INV_LINES" Relationship="DataModel.FK_IVL_IVC" FromRole="TH_HIRE_INVOICES" ToRole="TH_HIRE_INV_LINES" />
+        </EntityType>
+        <Association Name="FK_IVL_IVC">
+          <End Type="DataModel.TH_HIRE_INVOICES" Role="TH_HIRE_INVOICES" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DataModel.TH_HIRE_INV_LINES" Role="TH_HIRE_INV_LINES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TH_HIRE_INVOICES">
+              <PropertyRef Name="IVC_INVOICE_NUMBER" />
+            </Principal>
+            <Dependent Role="TH_HIRE_INV_LINES">
+              <PropertyRef Name="IVL_INVOICE_NUMBER" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -215,6 +451,104 @@
                 <ScalarProperty Name="PIL_NOMINAL_CODE" ColumnName="PIL_NOMINAL_CODE" />
                 <ScalarProperty Name="PIL_SEQ" ColumnName="PIL_SEQ" />
                 <ScalarProperty Name="PIL_INVOICE_ID" ColumnName="PIL_INVOICE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TH_HIRE_INV_LINES">
+            <EntityTypeMapping TypeName="DataModel.TH_HIRE_INV_LINES">
+              <MappingFragment StoreEntitySet="TH_HIRE_INV_LINES">
+                <ScalarProperty Name="IVL_IS_FIRST_HIRE_INV" ColumnName="IVL_IS_FIRST_HIRE_INV" />
+                <ScalarProperty Name="IVL_CURR_STOCKNO" ColumnName="IVL_CURR_STOCKNO" />
+                <ScalarProperty Name="IVL_CURR_EQUIPMENT_CODE" ColumnName="IVL_CURR_EQUIPMENT_CODE" />
+                <ScalarProperty Name="IVL_USER_MODIFIED" ColumnName="IVL_USER_MODIFIED" />
+                <ScalarProperty Name="IVL_HIRE_OFFHIRE_DATE" ColumnName="IVL_HIRE_OFFHIRE_DATE" />
+                <ScalarProperty Name="IVL_HIRE_STATUS" ColumnName="IVL_HIRE_STATUS" />
+                <ScalarProperty Name="IVL_1DAY_RATE" ColumnName="IVL_1DAY_RATE" />
+                <ScalarProperty Name="IVL_HIRE_DURATION_ADD_DAYS" ColumnName="IVL_HIRE_DURATION_ADD_DAYS" />
+                <ScalarProperty Name="IVL_HIRE_DURATION_PERIODS" ColumnName="IVL_HIRE_DURATION_PERIODS" />
+                <ScalarProperty Name="IVL_PRICE_PER" ColumnName="IVL_PRICE_PER" />
+                <ScalarProperty Name="IVL_STOCK_NO" ColumnName="IVL_STOCK_NO" />
+                <ScalarProperty Name="IVL_LOCAL_TAX_AMOUNT" ColumnName="IVL_LOCAL_TAX_AMOUNT" />
+                <ScalarProperty Name="IVL_LOCAL_TAX_RATE" ColumnName="IVL_LOCAL_TAX_RATE" />
+                <ScalarProperty Name="IVL_LOCAL_TAX_CODE" ColumnName="IVL_LOCAL_TAX_CODE" />
+                <ScalarProperty Name="IVL_SOURCEDOC_LINE_SEQ" ColumnName="IVL_SOURCEDOC_LINE_SEQ" />
+                <ScalarProperty Name="IVL_SOURCEDOC_ID" ColumnName="IVL_SOURCEDOC_ID" />
+                <ScalarProperty Name="IVL_NOTES2" ColumnName="IVL_NOTES2" />
+                <ScalarProperty Name="upsize_ts" ColumnName="upsize_ts" />
+                <ScalarProperty Name="IVL_NOTES" ColumnName="IVL_NOTES" />
+                <ScalarProperty Name="IVL_UNIT_PRICE" ColumnName="IVL_UNIT_PRICE" />
+                <ScalarProperty Name="IVL_QUANTITY" ColumnName="IVL_QUANTITY" />
+                <ScalarProperty Name="IVL_SECTION_NO" ColumnName="IVL_SECTION_NO" />
+                <ScalarProperty Name="IVL_PRE_DISCOUNT_CHARGE" ColumnName="IVL_PRE_DISCOUNT_CHARGE" />
+                <ScalarProperty Name="IVL_DISCOUNT_PCT" ColumnName="IVL_DISCOUNT_PCT" />
+                <ScalarProperty Name="IVL_EXCLUDE" ColumnName="IVL_EXCLUDE" />
+                <ScalarProperty Name="IVL_GENERATED_CHARGE" ColumnName="IVL_GENERATED_CHARGE" />
+                <ScalarProperty Name="IVL_TAX_AMOUNT" ColumnName="IVL_TAX_AMOUNT" />
+                <ScalarProperty Name="IVL_LINE_TAX_RATE" ColumnName="IVL_LINE_TAX_RATE" />
+                <ScalarProperty Name="IVL_CHARGE" ColumnName="IVL_CHARGE" />
+                <ScalarProperty Name="IVL_CUSTOMER_REFERENCE" ColumnName="IVL_CUSTOMER_REFERENCE" />
+                <ScalarProperty Name="IVL_DATE_TO" ColumnName="IVL_DATE_TO" />
+                <ScalarProperty Name="IVL_DATE_FROM" ColumnName="IVL_DATE_FROM" />
+                <ScalarProperty Name="IVL_CONTRACT_NUMBER" ColumnName="IVL_CONTRACT_NUMBER" />
+                <ScalarProperty Name="IVL_ADVNOTE_HIRE_CONTRACT_ID" ColumnName="IVL_ADVNOTE_HIRE_CONTRACT_ID" />
+                <ScalarProperty Name="IVL_LINE_SITE_ID" ColumnName="IVL_LINE_SITE_ID" />
+                <ScalarProperty Name="IVL_TAX_CODE" ColumnName="IVL_TAX_CODE" />
+                <ScalarProperty Name="IVL_NOMINAL_LEDGER_CODE" ColumnName="IVL_NOMINAL_LEDGER_CODE" />
+                <ScalarProperty Name="IVL_DETAILS" ColumnName="IVL_DETAILS" />
+                <ScalarProperty Name="IVL_SEQ" ColumnName="IVL_SEQ" />
+                <ScalarProperty Name="IVL_INVOICE_NUMBER" ColumnName="IVL_INVOICE_NUMBER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TH_HIRE_INVOICES">
+            <EntityTypeMapping TypeName="DataModel.TH_HIRE_INVOICES">
+              <MappingFragment StoreEntitySet="TH_HIRE_INVOICES">
+                <ScalarProperty Name="IVC_EMAIL_SENT_FLAG" ColumnName="IVC_EMAIL_SENT_FLAG" />
+                <ScalarProperty Name="IVC_SP_EXPORTED" ColumnName="IVC_SP_EXPORTED" />
+                <ScalarProperty Name="IVC_SELECT_FOR_RUNSET" ColumnName="IVC_SELECT_FOR_RUNSET" />
+                <ScalarProperty Name="IVC_CUSTOMER_TAX_REF_NO" ColumnName="IVC_CUSTOMER_TAX_REF_NO" />
+                <ScalarProperty Name="IVC_SELECTED" ColumnName="IVC_SELECTED" />
+                <ScalarProperty Name="IVC_UNPAID_STATUS_NOTES" ColumnName="IVC_UNPAID_STATUS_NOTES" />
+                <ScalarProperty Name="IVC_RAISED_DATE" ColumnName="IVC_RAISED_DATE" />
+                <ScalarProperty Name="IVC_EVENT_ID" ColumnName="IVC_EVENT_ID" />
+                <ScalarProperty Name="IVC_INV_DELIVERY_EXPORT_ID" ColumnName="IVC_INV_DELIVERY_EXPORT_ID" />
+                <ScalarProperty Name="IVC_INV_DELIVERY_REQUIRES_EXPORT" ColumnName="IVC_INV_DELIVERY_REQUIRES_EXPORT" />
+                <ScalarProperty Name="IVC_CONFIRMED_USERID" ColumnName="IVC_CONFIRMED_USERID" />
+                <ScalarProperty Name="IVC_CONFIRMED_DATE" ColumnName="IVC_CONFIRMED_DATE" />
+                <ScalarProperty Name="IVC_EXCH_RATE" ColumnName="IVC_EXCH_RATE" />
+                <ScalarProperty Name="IVC_CURRENCY_ID" ColumnName="IVC_CURRENCY_ID" />
+                <ScalarProperty Name="IVC_BATCH_CASH_CONTRACT_ID" ColumnName="IVC_BATCH_CASH_CONTRACT_ID" />
+                <ScalarProperty Name="IVC_SALESPERSON_ID" ColumnName="IVC_SALESPERSON_ID" />
+                <ScalarProperty Name="IVC_UNPAID_TX_ID" ColumnName="IVC_UNPAID_TX_ID" />
+                <ScalarProperty Name="IVC_POSTED" ColumnName="IVC_POSTED" />
+                <ScalarProperty Name="IVC_CUSTOMER_NAME" ColumnName="IVC_CUSTOMER_NAME" />
+                <ScalarProperty Name="IVC_FACTOR_POSTED" ColumnName="IVC_FACTOR_POSTED" />
+                <ScalarProperty Name="IVC_POST_TO_ACCOUNT" ColumnName="IVC_POST_TO_ACCOUNT" />
+                <ScalarProperty Name="IVC_MARK_PAID_DATE" ColumnName="IVC_MARK_PAID_DATE" />
+                <ScalarProperty Name="IVC_MARK_PAID_USERNAME" ColumnName="IVC_MARK_PAID_USERNAME" />
+                <ScalarProperty Name="IVC_MARK_PAID_USERID" ColumnName="IVC_MARK_PAID_USERID" />
+                <ScalarProperty Name="upsize_ts" ColumnName="upsize_ts" />
+                <ScalarProperty Name="IVC_INVOICE_DUE_DATE" ColumnName="IVC_INVOICE_DUE_DATE" />
+                <ScalarProperty Name="IVC_INVOICE_FOOTER_ID" ColumnName="IVC_INVOICE_FOOTER_ID" />
+                <ScalarProperty Name="IVC_TOTAL_AMOUNT" ColumnName="IVC_TOTAL_AMOUNT" />
+                <ScalarProperty Name="IVC_CASH_REQUIRES_POSTING_FLAG" ColumnName="IVC_CASH_REQUIRES_POSTING_FLAG" />
+                <ScalarProperty Name="IVC_CASH_PAID_FLAG" ColumnName="IVC_CASH_PAID_FLAG" />
+                <ScalarProperty Name="IVC_CASH_STATUS" ColumnName="IVC_CASH_STATUS" />
+                <ScalarProperty Name="IVC_BOTTOM_TITLE" ColumnName="IVC_BOTTOM_TITLE" />
+                <ScalarProperty Name="IVC_INVOICE_DATE" ColumnName="IVC_INVOICE_DATE" />
+                <ScalarProperty Name="IVC_IS_INTERNAL" ColumnName="IVC_IS_INTERNAL" />
+                <ScalarProperty Name="IVC_INVOICE_WHEN" ColumnName="IVC_INVOICE_WHEN" />
+                <ScalarProperty Name="IVC_HAS_LINES" ColumnName="IVC_HAS_LINES" />
+                <ScalarProperty Name="IVC_INVOICE_SOURCE" ColumnName="IVC_INVOICE_SOURCE" />
+                <ScalarProperty Name="IVC_INVOICE_TYPE" ColumnName="IVC_INVOICE_TYPE" />
+                <ScalarProperty Name="IVC_USER_INVOICE_NUMBER" ColumnName="IVC_USER_INVOICE_NUMBER" />
+                <ScalarProperty Name="IVC_NONBATCH_POSTING_ID" ColumnName="IVC_NONBATCH_POSTING_ID" />
+                <ScalarProperty Name="IVC_BATCH_NUMBER" ColumnName="IVC_BATCH_NUMBER" />
+                <ScalarProperty Name="IVC_INV_ADR_ID" ColumnName="IVC_INV_ADR_ID" />
+                <ScalarProperty Name="IVC_DEPOT_ID" ColumnName="IVC_DEPOT_ID" />
+                <ScalarProperty Name="IVC_SITE_ID" ColumnName="IVC_SITE_ID" />
+                <ScalarProperty Name="IVC_CUSTOMER_NUMBER" ColumnName="IVC_CUSTOMER_NUMBER" />
+                <ScalarProperty Name="IVC_INVOICE_NUMBER" ColumnName="IVC_INVOICE_NUMBER" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

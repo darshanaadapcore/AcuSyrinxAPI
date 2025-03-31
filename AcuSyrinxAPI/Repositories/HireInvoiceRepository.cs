@@ -8,45 +8,45 @@ using System.Linq;
 
 namespace AcuSyrinxAPI.Repositories
 {
-    public class PurchaseInvoiceRepository : IPurchaseInvoiceRepository
+    public class HireInvoiceRepository : IHireInvoiceRepository
     {
         private readonly DataContext _context;
 
-        public PurchaseInvoiceRepository(DataContext context)
+        public HireInvoiceRepository(DataContext context)
         {
             _context = context;
         }
 
         // Get all invoices
-        public PagedResult<PurchaseInvoice> GetAllInvoices(
+        public PagedResult<HireInvoice> GetAllInvoices(
             DateTime? fromDate = null,
             string invoiceType = null,
             string sortBy = null,
             int page = 1,
             int pageSize = 0)
         {
-            var query = _context.TH_PURCHASE_INVOICES.AsQueryable();
+            var query = _context.TH_HIRE_INVOICES.AsQueryable();
 
             if (fromDate.HasValue)
-                query = query.Where(i => i.PIV_INV_DATE >= fromDate.Value);
+                query = query.Where(i => i.IVC_INVOICE_DATE >= fromDate.Value);
 
             if (!string.IsNullOrEmpty(invoiceType))
-                query = query.Where(i => i.PIV_INV_TYPE.Equals(invoiceType, StringComparison.OrdinalIgnoreCase));
+                query = query.Where(i => i.IVC_INVOICE_TYPE.Equals(invoiceType, StringComparison.OrdinalIgnoreCase));
 
             // Apply sorting if provided 
             if (!string.IsNullOrEmpty(sortBy))
                 query = query.ApplySorting(sortBy);
             else
-                query = query.OrderBy(i => i.PIV_INV_DATE); // Default sorting by PIV_INV_DATE
+                query = query.OrderBy(i => i.IVC_INVOICE_DATE); // Default sorting by IVC_INVOICE_DATE
 
             // Apply pagination (Skip and Take should be applied after sorting)b
             var pagedResult = query.ApplyPagination(page, pageSize);
 
             // Map the entities to DTOs
-            var mappedResult = pagedResult.Data.Select(PurchaseInvoiceMapper.MapToDto).ToList();
+            var mappedResult = pagedResult.Data.Select(HireInvoiceMapper.MapToDto).ToList();
 
             // Return the paged result with mapped data
-            return new PagedResult<PurchaseInvoice>
+            return new PagedResult<HireInvoice>
             {
                 PageId = pagedResult.PageId,
                 TotalPages = pagedResult.TotalPages,
@@ -57,16 +57,26 @@ namespace AcuSyrinxAPI.Repositories
         }
 
         // Get a specific invoice by ID
-        public PurchaseInvoice GetInvoiceById(int id)
+        public HireInvoice GetInvoiceById(int id, string type)
         {
-            var invoice = _context.TH_PURCHASE_INVOICES
-                .Where(i => i.PIV_ID == id)
+            TH_HIRE_INVOICES invoice = null;
+
+            if (string.IsNullOrEmpty(type))
+            {
+                invoice = _context.TH_HIRE_INVOICES
+                .Where(i => i.IVC_INVOICE_NUMBER == id)
                 .FirstOrDefault();
-
+            }
+            else
+            {
+                invoice = _context.TH_HIRE_INVOICES
+                   .Where(i => i.IVC_INVOICE_NUMBER == id)
+                   .FirstOrDefault();
+            }
             if (invoice == null)
-                return null; 
+                return null;
 
-            return PurchaseInvoiceMapper.MapToDto(invoice);
+            return HireInvoiceMapper.MapToDto(invoice);
         }
 
     }

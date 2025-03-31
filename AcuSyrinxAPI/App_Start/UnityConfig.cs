@@ -1,3 +1,4 @@
+using AcuSyrinxAPI.DTO;
 using AcuSyrinxAPI.Repositories;
 using System.Web.Http;
 using Unity;
@@ -18,6 +19,7 @@ namespace AcuSyrinxAPI
             // e.g. container.RegisterType<ITestService, TestService>();
 
             container.RegisterType<IPurchaseInvoiceRepository, PurchaseInvoiceRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IHireInvoiceRepository, HireInvoiceRepository>(new HierarchicalLifetimeManager());
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

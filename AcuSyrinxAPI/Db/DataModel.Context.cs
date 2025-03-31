@@ -27,5 +27,7 @@ namespace AcuSyrinxAPI.Db
     
         public virtual DbSet<TH_PURCHASE_INVOICES> TH_PURCHASE_INVOICES { get; set; }
         public virtual DbSet<TH_PURCHASE_INV_LINES> TH_PURCHASE_INV_LINES { get; set; }
+        public virtual DbSet<TH_HIRE_INV_LINES> TH_HIRE_INV_LINES { get; set; }
+        public virtual DbSet<TH_HIRE_INVOICES> TH_HIRE_INVOICES { get; set; }
     }
 }

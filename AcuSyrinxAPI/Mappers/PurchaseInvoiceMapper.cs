@@ -2,11 +2,11 @@
 using AcuSyrinxAPI.DTO;
 using System.Linq;
 
-namespace AcuSyrinxAPI.Mappings
+namespace AcuSyrinxAPI.Mappers
 {
-    public static class EntityMapper
+    public static class PurchaseInvoiceMapper
     {
-        public static PurchaseInvoice MapToPurchaseInvoice(TH_PURCHASE_INVOICES entity)
+        public static PurchaseInvoice MapToDto(TH_PURCHASE_INVOICES entity)
         {
             if (entity == null)
                 return null;
@@ -47,12 +47,12 @@ namespace AcuSyrinxAPI.Mappings
                 PIV_IS_AUTHORISED = entity.PIV_IS_AUTHORISED,
 
                 InvoiceLines = entity.TH_PURCHASE_INV_LINES?
-                    .Select(MapToPurchaseInvoiceLine)
+                    .Select(MapToDto)
                     .ToList()
             };
         }
 
-        public static PurchaseInvoiceLine MapToPurchaseInvoiceLine(TH_PURCHASE_INV_LINES entity)
+        public static PurchaseInvoiceLine MapToDto(TH_PURCHASE_INV_LINES entity)
         {
             if (entity == null)
                 return null;
