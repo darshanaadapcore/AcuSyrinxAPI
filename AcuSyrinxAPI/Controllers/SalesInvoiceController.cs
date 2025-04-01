@@ -4,6 +4,7 @@ using System.Web.Http;
 
 namespace AcuSyrinxAPI.Controllers
 {
+    [Authorize]
     public class SalesInvoicesController : ApiController
     {
         private readonly static string _salesInvoiceType = "SALES";

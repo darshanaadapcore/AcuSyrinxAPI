@@ -4,6 +4,7 @@ using System.Web.Http;
 
 namespace AcuSyrinxAPI.Controllers
 {
+    [Authorize]
     public class PurchaseInvoicesController : ApiController
     {
         private readonly IPurchaseInvoiceRepository _purchaseInvoiceRepository;
@@ -15,6 +16,7 @@ namespace AcuSyrinxAPI.Controllers
 
 
         [HttpGet]
+       
         public IHttpActionResult Get(
             [FromUri] DateTime? fromDate = null,
             [FromUri] string invoiceType = null,
